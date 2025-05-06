@@ -5,8 +5,8 @@
   "type": "module",
   "main": "index.js",
   "scripts": {
-    "start": "bash install-yt-dlp.sh && node index.js"
-  },
+  "start": "bash install-yt-dlp.sh && node index.js"
+},
   "dependencies": {
     "@aws-sdk/client-s3": "^3.803.0",
     "dotenv": "^16.5.0",
