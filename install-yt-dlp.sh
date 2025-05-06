@@ -1,4 +1,6 @@
 #!/bin/bash
-# Install yt-dlp using apt-get
-apt-get update
-apt-get install -y yt-dlp
+
+# Install yt-dlp via pip (Python package manager)
+curl -sSL https://yt-dl.org/downloads/latest/yt-dlp.tar.gz | tar xz
+chmod +x yt-dlp
+mv yt-dlp /usr/local/bin/
