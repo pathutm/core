@@ -1,26 +1,26 @@
-# Use an appropriate base image
-FROM node:16
+# Use official Node.js image
+FROM node:18
 
-# Install required dependencies for yt-dlp
-RUN apt-get update && apt-get install -y \
-    python3-pip \
-    ffmpeg \
-    && rm -rf /var/lib/apt/lists/*
+# Install Python and pip (needed for yt-dlp)
+RUN apt-get update && \
+    apt-get install -y python3 python3-pip pipx && \
+    pipx install yt-dlp && \
+    rm -rf /var/lib/apt/lists/*
 
-# Install yt-dlp via pip
-RUN pip3 install yt-dlp
 
-# Set the working directory
-WORKDIR /opt/render/project/src
 
-# Copy the current directory contents into the container
-COPY . .
+# Set working directory
+WORKDIR /app
 
-# Install Node.js dependencies
+# Copy package files and install dependencies
+COPY package*.json ./
 RUN npm install
 
-# Expose port
+# Copy the rest of the app
+COPY . .
+
+# Expose port (adjust if needed)
 EXPOSE 3000
 
-# Command to run your app
+# Start the app
 CMD ["node", "index.js"]
